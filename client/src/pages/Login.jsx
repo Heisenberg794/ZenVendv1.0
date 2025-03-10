@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://your-app.railway.app'; // Replace with your Railway URL after deployment
+const API_URL = 'https://zenvendv10-production.up.railway.app'; // Replace with your Railway URL after deployment
 
 function Login({ setToken }) {
     const [email, setEmail] = useState('');
