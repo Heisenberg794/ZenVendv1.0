@@ -32,15 +32,5 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
-const io = new Server(server, {
-    cors: {
-        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
-        methods: ['GET', 'POST', 'PUT'],
-    },
-});
-
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
-}));
 
 module.exports = router;
