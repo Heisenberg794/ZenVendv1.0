@@ -15,7 +15,7 @@ const server = http.createServer(app);
 // Set up Socket.IO with CORS
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app'], // Replace with Vercel URL after deployment
+        origin: 'http://localhost:3000', // Replace with Vercel URL after deployment
         methods: ['GET', 'POST', 'PUT'],
         credentials: true
     },
@@ -23,7 +23,7 @@ const io = new Server(server, {
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app'], // Replace with Vercel URL
+    origin: 'http://localhost:3000', // Replace with Vercel URL
 }));
 app.use(express.json());
 
