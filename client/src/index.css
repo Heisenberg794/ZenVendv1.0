@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  color: #2e2e2e;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-container h1 {
+  color: #ff5733;
+  margin-bottom: 20px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.login-container input,
+.login-container select {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #2e2e2e;
+  border-radius: 5px;
+}
+
+.login-container button {
+  background: #ff5733;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #e04e2d;
+}
+
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard h1 {
+  color: #ff5733;
+  margin-bottom: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+}
+
+.orders,
+.inventory,
+.ondc-status {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-card {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #2e2e2e;
+  border-radius: 5px;
+}
+
+.order-card button,
+.inventory form button {
+  background: #ff5733;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.order-card button:hover,
+.inventory form button:hover {
+  background: #e04e2d;
+}
+
+.inventory form {
+  margin-top: 10px;
+}
+
+.inventory input {
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+}
+
+.low-stock {
+  color: #ff3333;
+  font-weight: bold;
+}
+
+.ondc-status {
+  background: #00c4b4;
+  color: #fff;
+}
