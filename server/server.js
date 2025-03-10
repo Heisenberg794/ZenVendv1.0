@@ -17,6 +17,7 @@ const io = new Server(server, {
     cors: {
         origin: ['http://localhost:3000', 'https://zen-vend.vercel.app'], // Replace with Vercel URL after deployment
         methods: ['GET', 'POST', 'PUT'],
+        credentials: true
     },
 });
 
