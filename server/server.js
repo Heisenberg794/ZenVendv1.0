@@ -3,6 +3,17 @@ const router = express.Router();
 const authMiddleware = require('./middleware/Auth');
 const Inventory = require('./models/Inventory');
 
+const io = new Server(server, {
+    cors: {
+        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
+        methods: ['GET', 'POST', 'PUT'],
+    },
+});
+
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
+}));
+
 router.get('/', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
     try {
