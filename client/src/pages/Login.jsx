@@ -1,21 +1,32 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:5000'; // Replace with your Railway URL after deployment
+const API_URL = 'http://localhost:5000'; // Local backend URL
 
 function Login({ setToken }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('vendor');
+    const navigate = useNavigate(); // React Router hook for navigation
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
-            localStorage.setItem('token', res.data.token);
-            setToken(res.data.token);
-            window.location.href = role === 'vendor' ? '/vendor' : '/delivery';
+            console.log('Login response:', res.data); // Debug response
+            const token = res.data.token;
+            if (token) {
+                localStorage.setItem('token', token);
+                setToken(token);
+                console.log('Token set, redirecting to:', role === 'vendor' ? '/vendor' : '/delivery'); // Debug redirect
+                navigate(role === 'vendor' ? '/vendor' : '/delivery'); // Use navigate instead of window.location
+            } else {
+                console.error('No token in response');
+                alert('Login failed: No token received');
+            }
         } catch (error) {
+            console.error('Login error:', error.response?.data || error.message); // Debug error
             alert(error.response?.data?.message || 'Login failed');
         }
     };

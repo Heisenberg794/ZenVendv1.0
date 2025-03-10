@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login.jsx';
-import VendorDashboard from './pages/VendorDashboard.jsx';
-import DeliveryDashboard from './pages/DeliveryDashboard.jsx';
+import Login from './pages/Login';
+import VendorDashboard from './pages/VendorDashboard';
+import DeliveryDashboard from './pages/DeliveryDashboard';
 
 function App() {
     const [token, setToken] = useState(localStorage.getItem('token'));
