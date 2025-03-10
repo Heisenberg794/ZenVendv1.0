@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('./middleware/Auth');
+const authMiddleware = require('../middleware/auth');
 const Inventory = require('./models/Inventory');
 const { Server } = require('socket.io');
 const cors = require('cors');
