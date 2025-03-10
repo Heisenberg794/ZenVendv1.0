@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
 
-const API_URL = 'https://zenvendv10-production.up.railway.app'; // Replace with your Railway URL
+const API_URL = 'http://localhost:5000'; // Replace with your Railway URL
 const socket = io(API_URL);
 
 function VendorDashboard({ token }) {
