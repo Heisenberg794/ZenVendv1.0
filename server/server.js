@@ -2,17 +2,8 @@ const express = require('express');
 const router = express.Router();
 const authMiddleware = require('./middleware/Auth');
 const Inventory = require('./models/Inventory');
-
-const io = new Server(server, {
-    cors: {
-        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
-        methods: ['GET', 'POST', 'PUT'],
-    },
-});
-
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
-}));
+const { Server } = require('socket.io');
+const cors = require('cors');
 
 router.get('/', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
@@ -40,5 +31,16 @@ router.post('/', authMiddleware, async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+const io = new Server(server, {
+    cors: {
+        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
+        methods: ['GET', 'POST', 'PUT'],
+    },
+});
+
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app/'],
+}));
 
 module.exports = router;
