@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('./middleware/Auth');
-const Inventory = require('../models/Inventory');
+const Inventory = require('./models/Inventory');
 
 router.get('/', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
