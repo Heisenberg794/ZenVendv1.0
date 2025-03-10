@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const authRoutes = require('../routes/auth');
+const authRoutes = require('./routes/auth');
 const orderRoutes = require('./routes/orders');
 const inventoryRoutes = require('./routes/inventory');
 
