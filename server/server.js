@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/authRoutes'); // Updated to authRoutes
 const orderRoutes = require('./routes/orders');
 const inventoryRoutes = require('./routes/inventory');
 
@@ -15,14 +15,14 @@ const server = http.createServer(app);
 // Set up Socket.IO with CORS
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:3000', 'https://https://zen-vend.vercel.app/'], // Replace with your Vercel URL after deployment
+        origin: ['http://localhost:3000', 'https://zen-vend.vercel.app'], // Replace with Vercel URL after deployment
         methods: ['GET', 'POST', 'PUT'],
     },
 });
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://https://zen-vend.vercel.app/'], // Replace with your Vercel URL
+    origin: ['http://localhost:3000', 'https://zen-vend.vercel.app'], // Replace with Vercel URL
 }));
 app.use(express.json());
 
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes); // Updated to authRoutes
 app.use('/api/orders', orderRoutes);
 app.use('/api/inventory', inventoryRoutes);
 

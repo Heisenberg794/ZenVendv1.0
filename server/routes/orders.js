@@ -3,6 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/Auth');
 const Order = require('../models/Order');
 
+// Get all orders (vendor or delivery based on role)
 router.get('/', authMiddleware, async (req, res) => {
     try {
         const filter = req.user.role === 'vendor' ? { vendor: req.user.id } : { deliveryPerson: req.user.id };
@@ -13,6 +14,7 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
+// Accept order (vendor only)
 router.put('/:id/accept', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
     try {
@@ -20,13 +22,14 @@ router.put('/:id/accept', authMiddleware, async (req, res) => {
         if (!order || order.vendor.toString() !== req.user.id) return res.status(404).json({ message: 'Order not found' });
         order.status = 'accepted';
         await order.save();
-        req.io.emit('orderUpdate', order);
+        req.io.emit('orderUpdate', order); // Real-time update
         res.json(order);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
 });
 
+// Assign delivery person (vendor only)
 router.put('/:id/assign', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
     const { deliveryPersonId } = req.body;
@@ -43,6 +46,7 @@ router.put('/:id/assign', authMiddleware, async (req, res) => {
     }
 });
 
+// Update status (delivery only)
 router.put('/:id/status', authMiddleware, async (req, res) => {
     if (req.user.role !== 'delivery') return res.status(403).json({ message: 'Unauthorized' });
     const { status } = req.body;

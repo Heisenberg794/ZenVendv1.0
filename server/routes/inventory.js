@@ -3,6 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/Auth');
 const Inventory = require('../models/Inventory');
 
+// Get inventory (vendor only)
 router.get('/', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
     try {
@@ -13,6 +14,7 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
+// Add/update inventory (vendor only)
 router.post('/', authMiddleware, async (req, res) => {
     if (req.user.role !== 'vendor') return res.status(403).json({ message: 'Unauthorized' });
     const { name, quantity } = req.body;
